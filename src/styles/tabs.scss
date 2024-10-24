@@ -16,6 +16,7 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 1;
+  gap: 4px;
 
   .placeholder {
     height: 40px;
@@ -32,7 +33,9 @@
   position: relative;
   flex-direction: column;
   @media (prefers-reduced-motion: no-preference) {
-    transition: background $theme-transition-time;
+    transition:
+      background $theme-transition-time,
+      border $theme-transition-time;
   }
   width: $theme-sidebar-width;
 
@@ -41,8 +44,6 @@
       $theme-brand-primary,
       $lightness: min(lightness($theme-brand-primary) * 1.35, 100)
     );
-
-    box-shadow: inset 4px 0 0 0 $theme-brand-primary;
 
     .tab-item__icon,
     .tab-item__label {

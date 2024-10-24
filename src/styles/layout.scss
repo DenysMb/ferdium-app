@@ -22,6 +22,7 @@ html {
   .sidebar {
     background: $dark-theme-gray-darker;
     color: $theme-text-color;
+    padding: 4px;
 
     &::after {
       box-shadow:
@@ -180,6 +181,7 @@ body.win32:not(.isFullScreen) .app .app__content {
     padding: 7px 0;
     position: relative;
     width: $theme-sidebar-width;
+    line-height: 0;
 
     &:hover,
     &:active {

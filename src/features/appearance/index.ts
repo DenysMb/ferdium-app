@@ -231,7 +231,7 @@ const generateServiceRibbonWidthStyle = (
   return horizontal
     ? `
     .sidebar {
-      height: ${width}px !important;
+      height: ${width + 8}px !important;
       overflow: hidden !important;
     }
     .sidebar div {
@@ -242,6 +242,7 @@ const generateServiceRibbonWidthStyle = (
       width: ${width + iconSize + tabItemHeightBias}px !important;
       min-height: unset;
       overflow: hidden !important;
+      border-radius: 4px;
     }
     .tab-item .tab-item__icon {
       width: ${minimumAdjustedIconSize}px !important;
