@@ -231,15 +231,15 @@ const generateServiceRibbonWidthStyle = (
   return horizontal
     ? `
     .sidebar {
-      height: ${width + 8}px !important;
+      height: ${width + 12}px !important;
       overflow: hidden !important;
     }
     .sidebar div {
       justify-content: ${sidebarServicesAlignment};
     }
     .tab-item {
-      height: ${width - tabItemWidthBias}px !important;
-      width: ${width + iconSize + tabItemHeightBias}px !important;
+      height: 100% !important;
+      width: ${width + 5 + iconSize + tabItemHeightBias}px !important;
       min-height: unset;
       overflow: hidden !important;
     }
@@ -250,15 +250,11 @@ const generateServiceRibbonWidthStyle = (
     .tab-item .tab-item__label {
       font-size: ${fontSize}px !important;
     }
-    .tab-item.is-label-enabled {
-      padding-top: 6px !important;
-      padding-bottom: 2px !important;
-    }
     .sidebar__button {
       font-size: ${width / 3}px !important;
     }
     .app .app__content {
-      padding-top: ${width + sidebarSizeBias + 8}px !important;
+      padding-top: ${width + sidebarSizeBias + 12}px !important;
     }
     .workspaces-drawer {
       margin-top: -${width}px !important;
@@ -292,15 +288,16 @@ const generateServiceRibbonWidthStyle = (
   `
     : `
     .sidebar {
-      width: ${width + 8}px !important;
+      width: ${width + 12}px !important;
     }
     .tabs {
       justify-content: ${sidebarServicesAlignment};
     }
     .tab-item {
-      width: ${width}px !important;
+      width: 100% !important;
       height: ${width - tabItemWidthBias}px !important;
       min-height: ${width - tabItemWidthBias}px !important;
+      padding: 4px 0 !important;
     }
     .tab-item .tab-item__icon {
       width: ${minimumAdjustedIconSize}px !important;

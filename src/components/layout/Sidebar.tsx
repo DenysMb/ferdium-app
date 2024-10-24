@@ -347,7 +347,7 @@ class Sidebar extends Component<IProps, IState> {
             id="tooltip-sidebar-button"
             place="right"
             variant="dark"
-            style={{ height: 'auto', overflowY: 'unset' }}
+            style={{ height: 'auto', width: 'auto', overflowY: 'unset' }}
           />
         )}
 

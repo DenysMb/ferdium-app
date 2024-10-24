@@ -17,12 +17,11 @@ html {
 }
 
 .theme__dark .app {
-  background: #272727;
+  background: #353535;
 
   .sidebar {
     background: $dark-theme-gray-darker;
     color: $theme-text-color;
-    padding: 4px;
 
     &::after {
       box-shadow:
@@ -151,6 +150,10 @@ body.win32:not(.isFullScreen) .app .app__content {
   text-align: center;
   width: $theme-sidebar-width;
   z-index: 200;
+
+  > div {
+    width: 100%;
+  }
 
   &::after {
     content: ' ';
