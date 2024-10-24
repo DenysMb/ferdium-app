@@ -242,7 +242,6 @@ const generateServiceRibbonWidthStyle = (
       width: ${width + iconSize + tabItemHeightBias}px !important;
       min-height: unset;
       overflow: hidden !important;
-      border-radius: 4px;
     }
     .tab-item .tab-item__icon {
       width: ${minimumAdjustedIconSize}px !important;
@@ -293,7 +292,7 @@ const generateServiceRibbonWidthStyle = (
   `
     : `
     .sidebar {
-      width: ${width}px !important;
+      width: ${width + 8}px !important;
     }
     .tabs {
       justify-content: ${sidebarServicesAlignment};

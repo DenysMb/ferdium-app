@@ -32,6 +32,7 @@
   min-height: 50px;
   position: relative;
   flex-direction: column;
+  border-radius: 4px;
   @media (prefers-reduced-motion: no-preference) {
     transition:
       background $theme-transition-time,
