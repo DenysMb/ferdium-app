@@ -728,7 +728,6 @@ class EditSettingsForm extends Component<IProps, IState> {
 
                 <Toggle {...form.$('showMessageBadgeWhenMuted').bind()} />
                 <Toggle {...form.$('enableLongPressServiceHint').bind()} />
-                <Select field={form.$('iconSize')} />
 
                 <Select field={form.$('navigationBarBehaviour')} />
 
@@ -875,8 +874,6 @@ class EditSettingsForm extends Component<IProps, IState> {
                 <H2 className="settings__section_header">
                   {intl.formatMessage(messages.sectionSidebarSettings)}
                 </H2>
-
-                <Select field={form.$('serviceRibbonWidth')} />
 
                 <Select field={form.$('sidebarServicesLocation')} />
 

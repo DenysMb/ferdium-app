@@ -283,16 +283,6 @@ export const TODO_APPS = {
   [CUSTOM_TODO_SERVICE]: 'Other service',
 };
 
-export const SIDEBAR_WIDTH = {
-  35: 'Extremely slim sidebar',
-  45: 'Very slim sidebar',
-  55: 'Slim sidebar',
-  68: 'Normal sidebar',
-  80: 'Wide sidebar',
-  90: 'Very wide sidebar',
-  100: 'Extremely wide sidebar',
-};
-
 export const SIDEBAR_SERVICES_LOCATION_TOPLEFT = 0;
 export const SIDEBAR_SERVICES_LOCATION_CENTER = 1;
 export const SIDEBAR_SERVICES_LOCATION_BOTTOMRIGHT = 2;
@@ -302,13 +292,6 @@ export const SIDEBAR_SERVICES_LOCATION = {
   [SIDEBAR_SERVICES_LOCATION_BOTTOMRIGHT]: 'Bottom/Right',
 };
 
-export const ICON_SIZES = {
-  0: 'Very small icons',
-  10: 'Small icons',
-  20: 'Normal icons',
-  30: 'Large icons',
-  40: 'Very large icons',
-};
 // We need a bias to push all icon sizes into positive numbers
 // otherwise the settings screen won't sort the sizes correctly.
 // The bias should always be the "Normal icons" value
