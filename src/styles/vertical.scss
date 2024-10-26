@@ -33,9 +33,8 @@ $tabitem-bias: 30px;
 
     .tab-item {
       &.is-active {
-        box-shadow: inset 0 4px 0 0 $theme-brand-primary;
         overflow: hidden;
-        height: $sidebar-width + 4;
+        height: $sidebar-width;
       }
 
       &.is-label-enabled {
@@ -44,9 +43,6 @@ $tabitem-bias: 30px;
         height: $sidebar-width + 10;
         width: max-content !important;
         overflow: hidden;
-        padding-left: 4px;
-        padding-right: 4px;
-        padding-top: 8px;
       }
 
       .tab-item__icon {
