@@ -231,7 +231,7 @@ const generateServiceRibbonWidthStyle = (
   return horizontal
     ? `
     .sidebar {
-      height: ${width}px !important;
+      height: ${width + 8}px !important;
       overflow: hidden !important;
     }
     .sidebar div {
@@ -250,15 +250,12 @@ const generateServiceRibbonWidthStyle = (
     .tab-item .tab-item__label {
       font-size: ${fontSize}px !important;
     }
-    .tab-item.is-label-enabled {
-      padding-top: 6px !important;
-      padding-bottom: 2px !important;
-    }
     .sidebar__button {
       font-size: ${width / 3}px !important;
+      line-height: 0;
     }
     .app .app__content {
-      padding-top: ${width + sidebarSizeBias}px !important;
+      padding-top: ${width + sidebarSizeBias + 8}px !important;
     }
     .workspaces-drawer {
       margin-top: -${width}px !important;
@@ -292,7 +289,7 @@ const generateServiceRibbonWidthStyle = (
   `
     : `
     .sidebar {
-      width: ${width}px !important;
+      width: ${width + 8}px !important;
     }
     .tabs {
       justify-content: ${sidebarServicesAlignment};
