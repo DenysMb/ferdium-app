@@ -15,6 +15,12 @@ import { userDataPath } from '../../environment-remote';
 
 const STYLE_ELEMENT_ID = 'custom-appearance-style';
 
+// The padding is 6px. We multiply because when we sum, we want to get
+// the value of the left and right side when using on width
+// and the value of the top and bottom side when using on height
+// So we get a total of 12px
+const PADDING = 6 * 2;
+
 const createStyleElement = () => {
   const styles = document.createElement('style');
   styles.id = STYLE_ELEMENT_ID;
@@ -232,7 +238,7 @@ const generateServiceRibbonWidthStyle = (
   return horizontal
     ? `
     .sidebar {
-      height: ${width + 8}px !important;
+      height: ${width + PADDING}px !important;
       overflow: hidden !important;
     }
     .sidebar div {
@@ -256,7 +262,7 @@ const generateServiceRibbonWidthStyle = (
       line-height: 0;
     }
     .app .app__content {
-      padding-top: ${width + sidebarSizeBias + 8}px !important;
+      padding-top: ${width + sidebarSizeBias + PADDING}px !important;
     }
     .workspaces-drawer {
       margin-top: -${width}px !important;
@@ -288,7 +294,7 @@ const generateServiceRibbonWidthStyle = (
       overflow: hidden !important;
     }
     .services__webview-wrapper {
-      padding: ${webviewPadding ? '4px' : '0px'};
+      padding: ${webviewPadding ? '6px' : '0px'};
     }
     .services__webview-wrapper webview {
       border-radius: ${webviewPadding ? '4px' : '0px'};
@@ -296,7 +302,7 @@ const generateServiceRibbonWidthStyle = (
   `
     : `
     .sidebar {
-      width: ${width + 8}px !important;
+      width: ${width + PADDING}px !important;
     }
     .tabs {
       justify-content: ${sidebarServicesAlignment};
@@ -317,7 +323,7 @@ const generateServiceRibbonWidthStyle = (
       width: calc(100% - ${300 + width}px) !important;
     }
     .services__webview-wrapper {
-      padding: ${webviewPadding ? '4px' : '0px'};
+      padding: ${webviewPadding ? '6px' : '0px'};
     }
     .services__webview-wrapper webview {
       border-radius: ${webviewPadding ? '4px' : '0px'};
