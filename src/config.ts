@@ -375,6 +375,7 @@ export const DEFAULT_APP_SETTINGS = {
   spellcheckerLanguage: 'en-us',
   darkMode: false,
   navigationBarManualActive: false,
+  webviewPadding: true,
   splitMode: false,
   splitColumns: 3,
   fallbackLocale: 'en-US',

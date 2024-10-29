@@ -144,6 +144,7 @@ const generateServiceRibbonWidthStyle = (
   grayscaleServicesDim,
   shouldShowDragArea,
   isFullScreen,
+  webviewPadding,
 ) => {
   const width = Number(widthStr);
   const iconSize = Number(iconSizeStr) - iconSizeBias;
@@ -286,6 +287,12 @@ const generateServiceRibbonWidthStyle = (
     .tab-item div {
       overflow: hidden !important;
     }
+    .services__webview-wrapper {
+      padding: ${webviewPadding ? '4px' : '0px'};
+    }
+    .services__webview-wrapper webview {
+      border-radius: ${webviewPadding ? '4px' : '0px'};
+    }
   `
     : `
     .sidebar {
@@ -308,6 +315,12 @@ const generateServiceRibbonWidthStyle = (
     }
     .todos__todos-panel--expanded {
       width: calc(100% - ${300 + width}px) !important;
+    }
+    .services__webview-wrapper {
+      padding: ${webviewPadding ? '4px' : '0px'};
+    }
+    .services__webview-wrapper webview {
+      border-radius: ${webviewPadding ? '4px' : '0px'};
     }
   `;
 };
@@ -393,6 +406,7 @@ const generateStyle = (settings, app) => {
     useHorizontalStyle,
     alwaysShowWorkspaces,
     showServiceName,
+    webviewPadding,
   } = settings;
 
   const { isFullScreen } = app;
@@ -415,6 +429,7 @@ const generateStyle = (settings, app) => {
     grayscaleServicesDim,
     shouldShowDragArea,
     isFullScreen,
+    webviewPadding,
   );
 
   if (shouldShowDragArea) {
@@ -472,6 +487,7 @@ export default function initAppearance(stores) {
       settings.all.app.useHorizontalStyle,
       settings.all.app.alwaysShowWorkspaces,
       settings.all.app.showServiceName,
+      settings.all.app.webviewPadding,
       app.isFullScreen,
     ],
     () => {
