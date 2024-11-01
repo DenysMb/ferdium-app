@@ -39,13 +39,23 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     // padding: `15px ${theme.workspaces.drawer.padding}px`,
-    // borderBottom: `1px solid ${theme.workspaces.drawer.listItem.border}`,
+    borderTop: `1px solid ${theme.workspaces.drawer.listItem.border}`,
     transition: itemTransition,
     '&:hover': {
       backgroundColor: theme.workspaces.drawer.listItem.hoverBackground,
     },
+    '&:first-of-type': {
+      borderBottomLeftRadius: 0,
+    },
+    '&:last-of-type': {
+      borderBottomRightRadius: 0,
+    },
   },
   isActiveItem: {
+    border: `1px solid ${theme.workspaces.drawer.listItem.border}`,
+    borderTop: 'none',
+    borderBottomLeftRadius: 4,
+    borderBottomRightRadius: 4,
     backgroundColor: theme.workspaces.drawer.listItem.activeBackground,
     '&:hover': {
       backgroundColor: theme.workspaces.drawer.listItem.activeBackground,
