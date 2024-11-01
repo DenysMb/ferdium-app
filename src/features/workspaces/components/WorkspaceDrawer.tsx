@@ -47,7 +47,6 @@ const styles = theme => ({
     height: theme.workspaces.drawer.height,
     position: 'absolute',
     zIndex: 200,
-    boxShadow: theme.workspaces.drawer.boxShadow,
     borderTop: `1px solid ${theme.workspaces.drawer.border}`,
     borderBottom: `1px solid ${theme.workspaces.drawer.border}`,
     borderTopWidth: 0,
