@@ -53,8 +53,8 @@ const styles = theme => ({
     borderBottomWidth: 0,
     transform() {
       return workspaceStore.isWorkspaceDrawerOpen
-        ? 'translateY(0px)'
-        : `translateY(-${theme.workspaces.drawer.height}px)`;
+        ? 'translateY(0px) !important'
+        : 'inherit';
     },
   },
   headline: {
