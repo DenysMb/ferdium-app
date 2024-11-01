@@ -211,6 +211,7 @@ export default (brandPrimary: string) => {
         width: '100%',
         padding: 20,
         background: drawerBg,
+        boxShadow: '0 0 6px rgba(0, 0, 0, 0.16), 0 0 6px rgba(0, 0, 0, 0.23)',
         buttons: {
           color: color(legacyStyles.themeGrayLight).lighten(0.1).hex(),
           hoverColor: legacyStyles.themeGrayLight,

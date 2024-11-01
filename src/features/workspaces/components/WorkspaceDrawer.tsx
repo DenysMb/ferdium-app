@@ -41,14 +41,21 @@ const messages = defineMessages({
 const styles = theme => ({
   drawer: {
     background: theme.workspaces.drawer.background,
+    width: theme.workspaces.drawer.width,
+    transition: 'transform 0.2s ease',
+    display: 'flex',
+    height: theme.workspaces.drawer.height,
+    position: 'absolute',
+    zIndex: 200,
+    boxShadow: theme.workspaces.drawer.boxShadow,
     borderTop: `1px solid ${theme.workspaces.drawer.border}`,
     borderBottom: `1px solid ${theme.workspaces.drawer.border}`,
-    width: theme.workspaces.drawer.width,
-    display: 'flex',
-    height() {
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    transform() {
       return workspaceStore.isWorkspaceDrawerOpen
-        ? `${theme.workspaces.drawer.height}px`
-        : 0;
+        ? 'translateY(0px)'
+        : `translateY(-${theme.workspaces.drawer.height}px)`;
     },
   },
   headline: {
