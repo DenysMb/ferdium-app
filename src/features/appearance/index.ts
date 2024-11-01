@@ -390,7 +390,7 @@ const generateOpenWorkspaceStyle = () => {
     box-shadow: none !important;
   }
   .workspaces-drawer {
-    height: 36px !important;
+    height: 48px !important;
   }
   `;
 };

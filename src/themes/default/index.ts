@@ -207,7 +207,7 @@ export default (brandPrimary: string) => {
         listItems: cloneDeep(services.listItems),
       },
       drawer: {
-        height: 36,
+        height: 48,
         width: '100%',
         padding: 20,
         background: drawerBg,

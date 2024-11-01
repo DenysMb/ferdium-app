@@ -41,6 +41,8 @@ const messages = defineMessages({
 const styles = theme => ({
   drawer: {
     background: theme.workspaces.drawer.background,
+    borderTop: `1px solid ${theme.workspaces.drawer.border}`,
+    borderBottom: `1px solid ${theme.workspaces.drawer.border}`,
     width: theme.workspaces.drawer.width,
     display: 'flex',
     height() {
@@ -71,6 +73,8 @@ const styles = theme => ({
     height: 'auto',
     overflowY: 'hidden',
     display: 'flex',
+    padding: 6,
+    gap: 6,
   },
   addNewWorkspaceLabel: {
     height: 'auto',
