@@ -148,7 +148,6 @@ class AppLayout extends Component<PropsWithChildren<IProps>, IState> {
               />
             )}
             <div className={`app__content ${classes.appContent}`}>
-              {workspacesDrawer}
               {sidebar}
               <div className="app__service">
                 <WorkspaceSwitchingIndicator />
@@ -210,6 +209,7 @@ class AppLayout extends Component<PropsWithChildren<IProps>, IState> {
                 <BasicAuth />
                 <QuickSwitch />
                 <PublishDebugInfo />
+                {workspacesDrawer}
                 {services}
                 <Outlet />
               </div>
