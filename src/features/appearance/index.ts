@@ -151,6 +151,7 @@ const generateServiceRibbonWidthStyle = (
   shouldShowDragArea,
   isFullScreen,
   webviewPadding,
+  showWorkspacesAtBottom,
 ) => {
   const width = Number(widthStr);
   const iconSize = Number(iconSizeStr) - iconSizeBias;
@@ -264,6 +265,16 @@ const generateServiceRibbonWidthStyle = (
     .app .app__content {
       padding-top: ${width + sidebarSizeBias + PADDING}px !important;
     }
+    .app .app__service {
+      flex-direction: ${showWorkspacesAtBottom ? 'column-reverse' : 'column'};
+    }
+    .workspaces-drawer {
+      border-top-width: ${showWorkspacesAtBottom ? '0px' : '1px'};
+    }
+    .workspaces-drawer::after {
+      top: ${showWorkspacesAtBottom ? '0px' : '-10px'};
+      bottom: ${showWorkspacesAtBottom ? '-10px' : '0px'};
+    }
     .darwin .sidebar {
       height: ${
         isFullScreen ? width : width + verticalStyleOffset - 3 - sizeDragArea
@@ -315,6 +326,16 @@ const generateServiceRibbonWidthStyle = (
     }
     .sidebar__button {
       font-size: ${width / 3}px !important;
+    }
+    .app .app__service {
+      flex-direction: ${showWorkspacesAtBottom ? 'column-reverse' : 'column'};
+    }
+    .workspaces-drawer {
+      border-top-width: ${showWorkspacesAtBottom ? '0px' : '1px'};
+    }
+    .workspaces-drawer::after {
+      top: ${showWorkspacesAtBottom ? '0px' : '-10px'};
+      bottom: ${showWorkspacesAtBottom ? '-10px' : '0px'};
     }
     .todos__todos-panel--expanded {
       width: calc(100% - ${300 + width}px) !important;
@@ -377,12 +398,19 @@ const generateVerticalStyle = (widthStr, alwaysShowWorkspaces) => {
   `;
 };
 
-const generateOpenWorkspaceStyle = useHorizontalStyle => {
+const generateOpenWorkspaceStyle = (
+  useHorizontalStyle,
+  showWorkspacesAtBottom,
+) => {
   const sidebarAfter = `
   .sidebar::after { box-shadow: none !important; }
   `;
 
-  const border = useHorizontalStyle ? '1px !important' : '0px !important';
+  const borderBottom = useHorizontalStyle ? '1px !important' : '0px !important';
+  const borderTop =
+    useHorizontalStyle && !showWorkspacesAtBottom
+      ? '1px !important'
+      : '0px !important';
 
   return `
   .app .app__content {
@@ -396,10 +424,10 @@ const generateOpenWorkspaceStyle = useHorizontalStyle => {
     position: relative !important;
     transform: translateY(0px) !important;
     box-shadow: none !important;
-    border-top-width: ${border};
-    border-bottom-width: ${border};
+    border-top-width: ${borderTop};
+    border-bottom-width: ${borderBottom};
     }
-    ${useHorizontalStyle && sidebarAfter}
+    ${useHorizontalStyle && !showWorkspacesAtBottom && sidebarAfter}
   `;
 };
 
@@ -416,6 +444,7 @@ const generateStyle = (settings, app) => {
     showDragArea,
     useHorizontalStyle,
     alwaysShowWorkspaces,
+    showWorkspacesAtBottom,
     showServiceName,
     webviewPadding,
   } = settings;
@@ -441,6 +470,7 @@ const generateStyle = (settings, app) => {
     shouldShowDragArea,
     isFullScreen,
     webviewPadding,
+    showWorkspacesAtBottom,
   );
 
   if (shouldShowDragArea) {
@@ -455,7 +485,10 @@ const generateStyle = (settings, app) => {
     }
   }
   if (alwaysShowWorkspaces) {
-    style += generateOpenWorkspaceStyle(useHorizontalStyle);
+    style += generateOpenWorkspaceStyle(
+      useHorizontalStyle,
+      showWorkspacesAtBottom,
+    );
   }
 
   style += generateUserCustomCSS();
@@ -497,6 +530,7 @@ export default function initAppearance(stores) {
       settings.all.app.grayscaleServicesDim,
       settings.all.app.useHorizontalStyle,
       settings.all.app.alwaysShowWorkspaces,
+      settings.all.app.showWorkspacesAtBottom,
       settings.all.app.showServiceName,
       settings.all.app.webviewPadding,
       app.isFullScreen,
