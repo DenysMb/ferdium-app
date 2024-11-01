@@ -377,7 +377,7 @@ const generateVerticalStyle = (widthStr, alwaysShowWorkspaces) => {
   }
 
   .workspaces-drawer {
-    margin-top: -${sidebarWidth - verticalStyleOffset - 1}px !important;
+    margin-top: -${sidebarWidth + verticalStyleOffset - 13}px !important;
   }
 
   .todos__todos-panel--expanded {
