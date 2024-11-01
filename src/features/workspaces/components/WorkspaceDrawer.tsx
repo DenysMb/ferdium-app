@@ -1,5 +1,3 @@
-import { mdiCog, mdiPlusBox } from '@mdi/js';
-import { noop } from 'lodash';
 import { inject, observer } from 'mobx-react';
 import { Component, type ReactElement } from 'react';
 import {
@@ -10,8 +8,6 @@ import {
 import withStyles, { type WithStylesProps } from 'react-jss';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import type { StoresProps } from '../../../@types/ferdium-components.types';
-import { H1 } from '../../../components/ui/headline';
-import Icon from '../../../components/ui/icon';
 import workspaceActions from '../actions';
 import { getUserWorkspacesRequest } from '../api';
 import { workspaceStore } from '../index';
@@ -45,9 +41,13 @@ const messages = defineMessages({
 const styles = theme => ({
   drawer: {
     background: theme.workspaces.drawer.background,
-    width: `${theme.workspaces.drawer.width}px`,
+    width: theme.workspaces.drawer.width,
     display: 'flex',
-    flexDirection: 'column',
+    height() {
+      return workspaceStore.isWorkspaceDrawerOpen
+        ? `${theme.workspaces.drawer.height}px`
+        : 0;
+    },
   },
   headline: {
     fontSize: '24px',
@@ -67,8 +67,10 @@ const styles = theme => ({
     },
   },
   workspaces: {
+    flex: 1,
     height: 'auto',
-    overflowY: 'auto',
+    overflowY: 'hidden',
+    display: 'flex',
   },
   addNewWorkspaceLabel: {
     height: 'auto',
@@ -127,27 +129,6 @@ class WorkspaceDrawer extends Component<IProps> {
 
     return (
       <div className={`${classes.drawer} workspaces-drawer`}>
-        <H1 className={classes.headline}>
-          {intl.formatMessage(messages.headline)}
-          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-          <span
-            className={classes.workspacesSettingsButton}
-            onKeyDown={noop}
-            onClick={() => {
-              workspaceActions.openWorkspaceSettings();
-            }}
-            data-tooltip-id="tooltip-workspaces-drawer"
-            data-tooltip-content={intl.formatMessage(
-              messages.workspacesSettingsTooltip,
-            )}
-          >
-            <Icon
-              icon={mdiCog}
-              size={1.5}
-              className={classes.workspacesSettingsButtonIcon}
-            />
-          </span>
-        </H1>
         <div className={classes.workspaces}>
           {!hideAllServicesWorkspace && (
             <WorkspaceDrawerItem
@@ -180,21 +161,26 @@ class WorkspaceDrawer extends Component<IProps> {
               shortcutIndex={index + 1}
             />
           ))}
-          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-          <div
-            className={classes.addNewWorkspaceLabel}
-            onClick={() => {
-              workspaceActions.openWorkspaceSettings();
-            }}
-            onKeyDown={noop}
-          >
-            <Icon
-              icon={mdiPlusBox}
-              className={classes.workspacesSettingsButtonIcon}
-            />
-            <span>{intl.formatMessage(messages.addNewWorkspaceLabel)}</span>
-          </div>
         </div>
+
+        {/* <span
+          className={classes.workspacesSettingsButton}
+          onKeyDown={noop}
+          onClick={() => {
+            workspaceActions.openWorkspaceSettings();
+          }}
+          data-tooltip-id="tooltip-workspaces-drawer"
+          data-tooltip-content={intl.formatMessage(
+            messages.workspacesSettingsTooltip,
+          )}
+        >
+          <Icon
+            icon={mdiCog}
+            size={1.5}
+            className={classes.workspacesSettingsButtonIcon}
+          />
+        </span> */}
+
         <ReactTooltip
           id="tooltip-workspaces-drawer"
           place="right"

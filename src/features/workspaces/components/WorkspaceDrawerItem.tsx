@@ -32,13 +32,15 @@ const itemTransition = window?.matchMedia(
 
 const styles = theme => ({
   item: {
-    height: '67px',
-    padding: `15px ${theme.workspaces.drawer.padding}px`,
-    borderBottom: `1px solid ${theme.workspaces.drawer.listItem.border}`,
+    height: 'auto',
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // padding: `15px ${theme.workspaces.drawer.padding}px`,
+    // borderBottom: `1px solid ${theme.workspaces.drawer.listItem.border}`,
     transition: itemTransition,
-    '&:first-child': {
-      borderTop: `1px solid ${theme.workspaces.drawer.listItem.border}`,
-    },
     '&:hover': {
       backgroundColor: theme.workspaces.drawer.listItem.hoverBackground,
     },
@@ -50,7 +52,6 @@ const styles = theme => ({
     },
   },
   name: {
-    marginTop: '4px',
     color: theme.workspaces.drawer.listItem.name.color,
   },
   activeName: {
@@ -59,12 +60,10 @@ const styles = theme => ({
   services: {
     display: 'block',
     fontSize: '11px',
-    marginTop: '5px',
     color: theme.workspaces.drawer.listItem.services.color,
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
-    lineHeight: '15px',
   },
   activeServices: {
     color: theme.workspaces.drawer.listItem.services.active,

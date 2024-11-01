@@ -264,9 +264,6 @@ const generateServiceRibbonWidthStyle = (
     .app .app__content {
       padding-top: ${width + sidebarSizeBias + PADDING}px !important;
     }
-    .workspaces-drawer {
-      margin-top: -${width}px !important;
-    }
     .darwin .sidebar {
       height: ${
         isFullScreen ? width : width + verticalStyleOffset - 3 - sizeDragArea
@@ -358,15 +355,13 @@ const generateVerticalStyle = (widthStr, alwaysShowWorkspaces) => {
     document.head.append(link);
   }
   const width = Number(widthStr);
-  const sidebarWidth = width - 4;
-  const verticalStyleOffset = 29;
 
   return `
   .sidebar {
   ${
     alwaysShowWorkspaces
       ? `
-    width: calc(100% - 300px) !important;
+    width: calc(100%) !important;
   `
       : ''
   }
@@ -374,10 +369,6 @@ const generateVerticalStyle = (widthStr, alwaysShowWorkspaces) => {
 
   .sidebar .sidebar__button {
     width: ${width}px;
-  }
-
-  .workspaces-drawer {
-    margin-top: -${sidebarWidth + verticalStyleOffset - 13}px !important;
   }
 
   .todos__todos-panel--expanded {
@@ -394,6 +385,12 @@ const generateOpenWorkspaceStyle = () => {
   }
   .sidebar__button--workspaces {
     display: none;
+  }
+  .sidebar::after {
+    box-shadow: none !important;
+  }
+  .workspaces-drawer {
+    height: 36px !important;
   }
   `;
 };
