@@ -14,12 +14,10 @@ import {
   DEFAULT_SHORTCUTS,
   GOOGLE_TRANSLATOR_LANGUAGES,
   HIBERNATION_STRATEGIES,
-  ICON_SIZES,
   LIBRETRANSLATE_TRANSLATOR_LANGUAGES,
   NAVIGATION_BAR_BEHAVIOURS,
   SEARCH_ENGINE_NAMES,
   SIDEBAR_SERVICES_LOCATION,
-  SIDEBAR_WIDTH,
   SPLIT_COLUMNS_MAX,
   SPLIT_COLUMNS_MIN,
   TODO_APPS,
@@ -223,17 +221,9 @@ const messages = defineMessages({
     id: 'settings.app.form.splitColumns',
     defaultMessage: 'Number of columns',
   },
-  serviceRibbonWidth: {
-    id: 'settings.app.form.serviceRibbonWidth',
-    defaultMessage: 'Sidebar width',
-  },
   sidebarServicesLocation: {
     id: 'settings.app.form.sidebarServicesLocation',
     defaultMessage: 'Sidebar Services Icons Location',
-  },
-  iconSize: {
-    id: 'settings.app.form.iconSize',
-    defaultMessage: 'Service icon size',
   },
   enableLongPressServiceHint: {
     id: 'settings.app.form.enableLongPressServiceHint',
@@ -478,9 +468,7 @@ class EditSettingsScreen extends Component<
       webviewPadding: Boolean(settingsData.webviewPadding),
       splitMode: Boolean(settingsData.splitMode),
       splitColumns: Number(settingsData.splitColumns),
-      serviceRibbonWidth: Number(settingsData.serviceRibbonWidth),
       sidebarServicesLocation: Number(settingsData.sidebarServicesLocation),
-      iconSize: Number(settingsData.iconSize),
       enableLongPressServiceHint: Boolean(
         settingsData.enableLongPressServiceHint,
       ),
@@ -651,18 +639,8 @@ class EditSettingsScreen extends Component<
       sort: false,
     });
 
-    const sidebarWidth = getSelectOptions({
-      locales: SIDEBAR_WIDTH,
-      sort: false,
-    });
-
     const sidebarServicesLocation = getSelectOptions({
       locales: SIDEBAR_SERVICES_LOCATION,
-      sort: false,
-    });
-
-    const iconSizes = getSelectOptions({
-      locales: ICON_SIZES,
       sort: false,
     });
 
@@ -1133,15 +1111,6 @@ class EditSettingsScreen extends Component<
           ),
           default: DEFAULT_APP_SETTINGS.splitColumns,
         },
-        serviceRibbonWidth: {
-          label: intl.formatMessage(messages.serviceRibbonWidth),
-          value: ifUndefined<number>(
-            settings.all.app.serviceRibbonWidth,
-            DEFAULT_APP_SETTINGS.serviceRibbonWidth,
-          ),
-          default: DEFAULT_APP_SETTINGS.serviceRibbonWidth,
-          options: sidebarWidth,
-        },
         sidebarServicesLocation: {
           label: intl.formatMessage(messages.sidebarServicesLocation),
           value: ifUndefined<number>(
@@ -1150,15 +1119,6 @@ class EditSettingsScreen extends Component<
           ),
           default: DEFAULT_APP_SETTINGS.sidebarServicesLocation,
           options: sidebarServicesLocation,
-        },
-        iconSize: {
-          label: intl.formatMessage(messages.iconSize),
-          value: ifUndefined<number>(
-            settings.all.app.iconSize,
-            DEFAULT_APP_SETTINGS.iconSize,
-          ),
-          default: DEFAULT_APP_SETTINGS.iconSize,
-          options: iconSizes,
         },
         enableLongPressServiceHint: {
           label: intl.formatMessage(messages.enableLongPressServiceHint),
