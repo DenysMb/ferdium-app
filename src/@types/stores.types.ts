@@ -21,7 +21,6 @@ export interface FerdiumStores {
   router: RouterStore;
   services: ServicesStore;
   settings: SettingsStore;
-  todos: TodosStore;
   ui: UIStore;
   user: UserStore;
   workspaces: WorkspacesStore;
@@ -38,7 +37,6 @@ export interface Stores {
   router: RouterStore;
   services: ServicesStore;
   settings: SettingsStore;
-  todos: TodosStore;
   ui: UIStore;
   user: UserStore;
   workspaces: WorkspacesStore;
@@ -51,7 +49,6 @@ interface Actions {
   requests: RequestsStore;
   services: ServicesStore;
   settings: SettingsStore;
-  todos: TodosStore;
   ui: UIStore;
   user: UserStore;
   workspaces: WorkspacesStore;
@@ -223,8 +220,6 @@ interface ServicesStore extends TypedStore {
   allDisplayedUnordered: () => void;
   enabled: () => void;
   filtered: () => void;
-  isTodosServiceActive: () => void;
-  isTodosServiceAdded: () => void;
 }
 
 // TODO: Create actual type based on the default config in config.ts
@@ -244,42 +239,6 @@ interface SettingsStore extends TypedStore {
   proxy: () => void;
   service: ServicesStore;
   stats: () => void;
-}
-
-interface TodosStore extends TypedStore {
-  isFeatureActive: () => void;
-  isInitialized: true;
-  userAgentModel: () => void;
-  webview: () => void;
-  _allReactions: any[];
-  _firstLaunchReaction: () => void;
-  _goToService: () => void;
-  _handleNewWindowEvent: () => void;
-  _onTodosClientInitialized: () => void;
-  _openDevTools: () => void;
-  _reload: () => void;
-  _routeCheckReaction: () => void;
-  _updateSettings: () => void;
-  _updateTodosConfig: () => void;
-  isFeatureEnabledByUser: () => void;
-  isTodoUrlValid: () => void;
-  isTodosPanelForceHidden: () => void;
-  isTodosEnabled: boolean;
-  isTodosPanelVisible: () => void;
-  isUsingPredefinedTodoServer: () => void;
-  settings: {
-    isFeatureEnabledByUser: boolean;
-  };
-  todoRecipeId: () => void;
-  todoUrl: () => void;
-  userAgent: () => void;
-  width: () => void;
-  _handleClientMessage: () => void;
-  _handleHostMessage: () => void;
-  _resize: () => void;
-  _setTodosWebview: () => void;
-  _toggleTodosFeatureVisibility: () => void;
-  _toggleTodosPanel: () => void;
 }
 
 interface UIStore extends TypedStore {

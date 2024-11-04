@@ -349,9 +349,6 @@ const generateServiceRibbonWidthStyle = (
       top: ${showWorkspacesAtBottom ? '0px' : '-10px'};
       bottom: ${showWorkspacesAtBottom ? '-10px' : '0px'};
     }
-    .todos__todos-panel--expanded {
-      width: calc(100% - ${300 + width}px) !important;
-    }
     .services__webview-wrapper {
       padding: ${webviewPadding ? '6px' : '0px'};
     }
@@ -402,10 +399,6 @@ const generateVerticalStyle = (widthStr, alwaysShowWorkspaces) => {
 
   .sidebar .sidebar__button {
     width: ${width}px;
-  }
-
-  .todos__todos-panel--expanded {
-    width: calc(100% - 300px) !important;
   }
   `;
 };

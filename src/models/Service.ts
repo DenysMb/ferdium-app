@@ -8,7 +8,6 @@ import { v4 as uuidV4 } from 'uuid';
 import { needsToken } from '../api/apiBase';
 import { DEFAULT_SERVICE_ORDER, DEFAULT_SERVICE_SETTINGS } from '../config';
 import { isMac } from '../environment';
-import { todosStore } from '../features/todos';
 import { getFaviconUrl } from '../helpers/favicon-helpers';
 import { isValidExternalURL, normalizedUrl } from '../helpers/url-helpers';
 import { ifUndefined } from '../jsUtils';
@@ -308,10 +307,6 @@ export default class Service {
     };
   }
 
-  @computed get isTodosService(): boolean {
-    return this.recipe.id === todosStore.todoRecipeId;
-  }
-
   @computed get canHibernate(): boolean {
     return this.isHibernationEnabled && !this.isMediaPlaying;
   }
@@ -321,10 +316,6 @@ export default class Service {
   }
 
   get webview(): ElectronWebView | null {
-    if (this.isTodosService) {
-      return todosStore.webview;
-    }
-
     return this._webview;
   }
 

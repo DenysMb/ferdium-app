@@ -32,8 +32,6 @@ export const cmdOrCtrlShortcutKey = (isAccelerator = true) =>
   isAccelerator ? cmdKey : ctrlKey;
 export const lockFerdiumShortcutKey = (isAccelerator = true) =>
   `${cmdOrCtrlShortcutKey(isAccelerator)}+${shiftKey(isAccelerator)}+L`;
-export const todosToggleShortcutKey = (isAccelerator = true) =>
-  `${cmdOrCtrlShortcutKey(isAccelerator)}+T`;
 export const workspaceToggleShortcutKey = (isAccelerator = true) =>
   `${cmdOrCtrlShortcutKey(isAccelerator)}+D`;
 export const muteFerdiumShortcutKey = (isAccelerator = true) =>

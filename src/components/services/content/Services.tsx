@@ -134,30 +134,28 @@ class Services extends Component<IProps, IState> {
             </div>
           </Appear>
         )}
-        {services
-          .filter(service => !service.isTodosService)
-          .map(service => (
-            <ServiceView
-              key={service.id}
-              service={service}
-              // handleIPCMessage={handleIPCMessage} //  TODO: [TECH DEBT][PROPS NOT EXIST IN COMPONENT] later check it
-              setWebviewRef={setWebviewReference}
-              detachService={detachService}
-              // openWindow={openWindow} //  TODO: [TECH DEBT][PROPS NOT EXIST IN COMPONENT] later check it
-              reload={() => reload({ serviceId: service.id })}
-              edit={() => openSettings({ path: `services/edit/${service.id}` })}
-              enable={() =>
-                update({
-                  serviceId: service.id,
-                  serviceData: {
-                    isEnabled: true,
-                  },
-                  redirect: false,
-                })
-              }
-              isSpellcheckerEnabled={isSpellcheckerEnabled}
-            />
-          ))}
+        {services.map(service => (
+          <ServiceView
+            key={service.id}
+            service={service}
+            // handleIPCMessage={handleIPCMessage} //  TODO: [TECH DEBT][PROPS NOT EXIST IN COMPONENT] later check it
+            setWebviewRef={setWebviewReference}
+            detachService={detachService}
+            // openWindow={openWindow} //  TODO: [TECH DEBT][PROPS NOT EXIST IN COMPONENT] later check it
+            reload={() => reload({ serviceId: service.id })}
+            edit={() => openSettings({ path: `services/edit/${service.id}` })}
+            enable={() =>
+              update({
+                serviceId: service.id,
+                serviceData: {
+                  isEnabled: true,
+                },
+                redirect: false,
+              })
+            }
+            isSpellcheckerEnabled={isSpellcheckerEnabled}
+          />
+        ))}
       </div>
     );
   }

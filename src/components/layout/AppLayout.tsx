@@ -20,7 +20,6 @@ import InfoBar from '../ui/InfoBar';
 import ErrorBoundary from '../util/ErrorBoundary';
 
 import { isMac, isWindows } from '../../environment';
-import Todos from '../../features/todos/containers/TodosScreen';
 import WorkspaceSwitchingIndicator from '../../features/workspaces/components/WorkspaceSwitchingIndicator';
 import AppUpdateInfoBar from '../AppUpdateInfoBar';
 import Icon from '../ui/icon';
@@ -213,7 +212,6 @@ class AppLayout extends Component<PropsWithChildren<IProps>, IState> {
                 {services}
                 <Outlet />
               </div>
-              <Todos />
             </div>
           </div>
         </ErrorBoundary>

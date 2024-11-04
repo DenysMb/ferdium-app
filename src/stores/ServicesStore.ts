@@ -428,18 +428,6 @@ export default class ServicesStore extends TypedStore {
     return null;
   }
 
-  @computed get isTodosServiceAdded() {
-    return (
-      this.allDisplayed.find(
-        service => service.isTodosService && service.isEnabled,
-      ) ?? false
-    );
-  }
-
-  @computed get isTodosServiceActive() {
-    return this.active?.isTodosService;
-  }
-
   // TODO: This can actually return undefined as well
   one(id: string): Service {
     return this.all.find(service => service.id === id)!;
@@ -668,13 +656,6 @@ export default class ServicesStore extends TypedStore {
     }
     this._setIsActive(service, true);
     this._awake({ serviceId: service.id });
-
-    if (
-      this.isTodosServiceActive &&
-      !this.stores.todos.settings.isFeatureEnabledByUser
-    ) {
-      this.actions.todos.toggleTodosFeatureVisibility();
-    }
 
     // Update list of last used services
     this.lastUsedServices = this.lastUsedServices.filter(
@@ -977,12 +958,6 @@ export default class ServicesStore extends TypedStore {
 
         break;
       }
-      case 'feature:todos': {
-        Object.assign(args[0].data, { serviceId });
-        this.actions.todos.handleHostMessage(args[0]);
-
-        break;
-      }
       // No default
     }
   }
@@ -1033,11 +1008,6 @@ export default class ServicesStore extends TypedStore {
 
     service.resetMessageCount();
     service.lostRecipeConnection = false;
-
-    if (service.isTodosService) {
-      this.actions.todos.reload();
-      return;
-    }
 
     if (!service.webview) return;
     // eslint-disable-next-line consistent-return
@@ -1144,9 +1114,7 @@ export default class ServicesStore extends TypedStore {
 
   @action _openDevTools({ serviceId }) {
     const service = this.one(serviceId);
-    if (service.isTodosService) {
-      this.actions.todos.openDevTools();
-    } else if (service.webview) {
+    if (service.webview) {
       service.webview.openDevTools();
     }
   }

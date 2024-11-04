@@ -1,7 +1,6 @@
 import {
   mdiBell,
   mdiBellOff,
-  mdiCheckAll,
   mdiChevronDown,
   mdiChevronRight,
   mdiCog,
@@ -28,11 +27,8 @@ import {
   muteFerdiumShortcutKey,
   settingsShortcutKey,
   splitModeToggleShortcutKey,
-  todosToggleShortcutKey,
   workspaceToggleShortcutKey,
 } from '../../environment';
-import { todosStore } from '../../features/todos';
-import { todoActions } from '../../features/todos/actions';
 import globalMessages from '../../i18n/globalMessages';
 import type Service from '../../models/Service';
 import type { RealStores } from '../../stores';
@@ -64,14 +60,6 @@ const messages = defineMessages({
     id: 'sidebar.closeWorkspaceDrawer',
     defaultMessage: 'Close workspace drawer',
   },
-  openTodosDrawer: {
-    id: 'sidebar.openTodosDrawer',
-    defaultMessage: 'Open Ferdium Todos',
-  },
-  closeTodosDrawer: {
-    id: 'sidebar.closeTodosDrawer',
-    defaultMessage: 'Close Ferdium Todos',
-  },
   lockFerdium: {
     id: 'sidebar.lockFerdium',
     defaultMessage: 'Lock Ferdium',
@@ -88,7 +76,6 @@ interface IProps extends WrappedComponentProps {
   // eslint-disable-next-line react/no-unused-prop-types
   isMenuCollapsed: boolean;
   isWorkspaceDrawerOpen: boolean;
-  isTodosServiceActive: boolean;
   actions?: Actions;
   stores?: RealStores;
 
@@ -155,7 +142,6 @@ class Sidebar extends Component<IProps, IState> {
       toggleWorkspaceDrawer,
       stores,
       actions,
-      isTodosServiceActive,
     } = this.props;
     const {
       hideCollapseButton,
@@ -169,9 +155,6 @@ class Sidebar extends Component<IProps, IState> {
       splitMode,
     } = stores!.settings.app;
     const { intl } = this.props;
-    const todosToggleMessage = todosStore.isTodosPanelVisible
-      ? messages.closeTodosDrawer
-      : messages.openTodosDrawer;
 
     const workspaceToggleMessage = isWorkspaceDrawerOpen
       ? messages.closeWorkspaceDrawer
@@ -183,7 +166,6 @@ class Sidebar extends Component<IProps, IState> {
       !hideNotificationsButton,
       !hideSettingsButton,
       !hideSplitModeButton,
-      todosStore.isFeatureEnabledByUser,
     ].filter(Boolean).length;
 
     const { isMenuCollapsed } = stores!.settings.all.app;
@@ -301,25 +283,6 @@ class Sidebar extends Component<IProps, IState> {
             )} (${muteFerdiumShortcutKey(false)})`}
           >
             <Icon icon={isAppMuted ? mdiBellOff : mdiBell} size={1.5} />
-          </button>
-        ) : null}
-        {todosStore.isFeatureEnabledByUser && !isMenuCollapsed ? (
-          <button
-            type="button"
-            onClick={() => {
-              todoActions.toggleTodosPanel();
-              this.updateToolTip();
-            }}
-            disabled={isTodosServiceActive}
-            className={`sidebar__button sidebar__button--todos ${
-              todosStore.isTodosPanelVisible ? 'is-active' : ''
-            }`}
-            data-tooltip-id="tooltip-sidebar-button"
-            data-tooltip-content={`${intl.formatMessage(
-              todosToggleMessage,
-            )} (${todosToggleShortcutKey(false)})`}
-          >
-            <Icon icon={mdiCheckAll} size={1.5} />
           </button>
         ) : null}
         {stores!.settings.all.app.isLockingFeatureEnabled ? (

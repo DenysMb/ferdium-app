@@ -1,4 +1,3 @@
-import { ipcRenderer } from 'electron';
 import jwt from 'jsonwebtoken';
 import { action, computed, makeObservable, observable } from 'mobx';
 import localStorage from 'mobx-localstorage';
@@ -7,7 +6,6 @@ import moment from 'moment';
 import type { Stores } from '../@types/stores.types';
 import type { Actions } from '../actions/lib/actions';
 import type { ApiInterface } from '../api';
-import { TODOS_PARTITION_ID } from '../config';
 import { isDevMode } from '../environment-remote';
 import CachedRequest from './lib/CachedRequest';
 import Request from './lib/Request';
@@ -255,10 +253,6 @@ export default class UserStore extends TypedStore {
     this.authToken = null;
 
     this.stores.services.allServicesRequest.invalidate().reset();
-
-    if (this.stores.todos.isTodosEnabled) {
-      ipcRenderer.send('clear-storage-data', { sessionId: TODOS_PARTITION_ID });
-    }
   }
 
   @action async _importLegacyServices({ services }): Promise<void> {

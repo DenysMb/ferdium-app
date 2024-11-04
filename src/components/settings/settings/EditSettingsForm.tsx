@@ -74,10 +74,6 @@ const messages = defineMessages({
     defaultMessage:
       'Minutes of inactivity, after which Ferdium should automatically lock. Use 0 to disable',
   },
-  todoServerInfo: {
-    id: 'settings.app.todoServerInfo',
-    defaultMessage: 'This server will be used for the "Ferdium Todo" feature.',
-  },
   lockedPassword: {
     id: 'settings.app.lockedPassword',
     defaultMessage: 'Password',
@@ -332,7 +328,6 @@ interface IProps extends WrappedComponentProps {
   updateIsReadyToInstall: boolean;
   updateFailed: boolean;
   isClearingAllCache: boolean;
-  isTodosActivated: boolean;
   automaticUpdates: boolean;
   isTwoFactorAutoCatcherEnabled: boolean;
   twoFactorAutoCatcherMatcher: string;
@@ -433,7 +428,6 @@ class EditSettingsForm extends Component<IProps, IState> {
       isDarkmodeEnabled,
       isSplitModeEnabled,
       openProcessManager,
-      isTodosActivated,
       isOnline,
       serverURL,
       intl,
@@ -616,36 +610,6 @@ class EditSettingsForm extends Component<IProps, IState> {
                 )}
 
                 <Toggle {...form.$('keepAllWorkspacesLoaded').bind()} />
-
-                {isTodosActivated && <Hr />}
-                <Toggle {...form.$('enableTodos').bind()} />
-                {isTodosActivated && (
-                  <div>
-                    <Select field={form.$('predefinedTodoServer')} />
-                    {form.$('predefinedTodoServer').value ===
-                      'isUsingCustomTodoService' && (
-                      <div>
-                        <Input
-                          placeholder="Todo Server"
-                          onChange={e => this.submit(e)}
-                          {...form.$('customTodoServer').bind()}
-                        />
-                        <p
-                          className="settings__message"
-                          style={{
-                            borderTop: 0,
-                            marginTop: 0,
-                            paddingTop: 0,
-                            marginBottom: '2rem',
-                          }}
-                        >
-                          {intl.formatMessage(messages.todoServerInfo)}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                )}
-                {isTodosActivated && <Hr />}
 
                 {scheduledDNDEnabled && <Hr />}
                 <Toggle {...form.$('scheduledDNDEnabled').bind()} />

@@ -36,12 +36,10 @@ import {
   settingsShortcutKey,
   shiftKey,
   splitModeToggleShortcutKey,
-  todosToggleShortcutKey,
   toggleFullScreenKey,
   workspaceToggleShortcutKey,
 } from '../environment';
 import { ferdiumVersion } from '../environment-remote';
-import { todoActions } from '../features/todos/actions';
 import workspaceActions from '../features/workspaces/actions';
 import { workspaceStore } from '../features/workspaces/index';
 import { onAuthGoToReleaseNotes } from '../helpers/update-helpers';
@@ -156,10 +154,6 @@ export const menuItems = defineMessages({
     id: 'menu.view.toggleDevTools',
     defaultMessage: 'Toggle Developer Tools',
   },
-  toggleTodosDevTools: {
-    id: 'menu.view.toggleTodosDevTools',
-    defaultMessage: 'Toggle Todos Developer Tools',
-  },
   toggleServiceDevTools: {
     id: 'menu.view.toggleServiceDevTools',
     defaultMessage: 'Toggle Service Developer Tools',
@@ -179,10 +173,6 @@ export const menuItems = defineMessages({
   lockFerdium: {
     id: 'menu.view.lockFerdium',
     defaultMessage: 'Lock Ferdium',
-  },
-  reloadTodos: {
-    id: 'menu.view.reloadTodos',
-    defaultMessage: 'Reload ToDos',
   },
   minimize: {
     id: 'menu.window.minimize',
@@ -319,26 +309,6 @@ export const menuItems = defineMessages({
   defaultWorkspace: {
     id: 'menu.workspaces.defaultWorkspace',
     defaultMessage: 'All services',
-  },
-  todos: {
-    id: 'menu.todos',
-    defaultMessage: 'Todos',
-  },
-  openTodosDrawer: {
-    id: 'menu.Todoss.openTodosDrawer',
-    defaultMessage: 'Open Todos drawer',
-  },
-  closeTodosDrawer: {
-    id: 'menu.Todoss.closeTodosDrawer',
-    defaultMessage: 'Close Todos drawer',
-  },
-  enableTodos: {
-    id: 'menu.todos.enableTodos',
-    defaultMessage: 'Enable Todos',
-  },
-  disableTodos: {
-    id: 'menu.todos.disableTodos',
-    defaultMessage: 'Disable Todos',
   },
   serviceGoHome: {
     id: 'menu.services.goHome',
@@ -600,11 +570,6 @@ function titleBarTemplateFactory(
       visible: !locked,
     },
     {
-      label: intl.formatMessage(menuItems.todos),
-      submenu: [],
-      visible: !locked,
-    },
-    {
       label: intl.formatMessage(menuItems.window),
       role: 'window',
       submenu: [
@@ -814,17 +779,6 @@ class FranzMenu implements StoresProps {
         },
       );
 
-      if (this.stores.todos.isFeatureEnabledByUser) {
-        (tpl[1].submenu as MenuItemConstructorOptions[]).push({
-          label: intl.formatMessage(menuItems.toggleTodosDevTools),
-          accelerator: `${cmdOrCtrlShortcutKey()}+${shiftKey()}+${altKey()}+O`,
-          click: () => {
-            const webview = document.querySelector('#todos-panel webview');
-            if (webview) this.actions.todos.openDevTools();
-          },
-        });
-      }
-
       (tpl[1].submenu as MenuItemConstructorOptions[]).unshift(
         {
           label: intl.formatMessage(menuItems.reloadService),
@@ -852,13 +806,6 @@ class FranzMenu implements StoresProps {
           },
         },
         {
-          label: intl.formatMessage(menuItems.reloadTodos),
-          accelerator: `${cmdOrCtrlShortcutKey()}+${shiftKey()}+${altKey()}+R`,
-          click: () => {
-            this.actions.todos.reload();
-          },
-        },
-        {
           type: 'separator',
         },
         {
@@ -883,8 +830,6 @@ class FranzMenu implements StoresProps {
       }
 
       tpl[3].submenu = this.workspacesMenu();
-
-      tpl[4].submenu = this.todosMenu();
     }
 
     tpl.unshift({
@@ -1065,8 +1010,6 @@ class FranzMenu implements StoresProps {
 
       tpl[4].submenu = this.workspacesMenu();
 
-      tpl[5].submenu = this.todosMenu();
-
       // eslint-disable-next-line unicorn/prefer-at
       (tpl[tpl.length - 1].submenu as MenuItemConstructorOptions[]).push(
         {
@@ -1241,44 +1184,6 @@ class FranzMenu implements StoresProps {
           workspaceActions.activate({ workspace });
         },
       });
-    }
-
-    return menu;
-  }
-
-  todosMenu(): MenuItemConstructorOptions[] {
-    const { isTodosPanelVisible, isFeatureEnabledByUser } = this.stores.todos;
-    const { intl } = window['ferdium'];
-
-    const menu: MenuItemConstructorOptions[] = [];
-    menu.push({
-      label: intl.formatMessage(
-        isFeatureEnabledByUser ? menuItems.disableTodos : menuItems.enableTodos,
-      ),
-      click: () => {
-        todoActions.toggleTodosFeatureVisibility();
-      },
-      enabled: this.stores.user.isLoggedIn,
-    });
-
-    if (isFeatureEnabledByUser) {
-      menu.push(
-        {
-          type: 'separator',
-        },
-        {
-          label: intl.formatMessage(
-            isTodosPanelVisible
-              ? menuItems.closeTodosDrawer
-              : menuItems.openTodosDrawer,
-          ),
-          accelerator: `${todosToggleShortcutKey()}`,
-          click: () => {
-            todoActions.toggleTodosPanel();
-          },
-          enabled: this.stores.user.isLoggedIn,
-        },
-      );
     }
 
     return menu;

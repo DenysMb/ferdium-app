@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <title>Ferdium</title>
@@ -12,9 +12,8 @@
       media="(prefers-reduced-motion: no-preference)"
     />
     <script>
-      require("./app.js")
+      require('./app.js');
     </script>
-
   </head>
   <body>
     <div class="dev-warning">DEV MODE</div>
@@ -50,24 +49,14 @@
             const originalReloadBehaviour = window._onLiveReloadFileChanged;
 
             window._onLiveReloadFileChanged = file => {
-              const isTodoPreloadPath = file.path.includes(
-                '/build/features/todos/preload.js',
-              );
               if (
                 !file.path.includes('/build/webview/') &&
                 !file.path.includes('/build/index.js') &&
-                !file.path.includes('/build/electron/') &&
-                !isTodoPreloadPath
+                !file.path.includes('/build/electron/')
               ) {
                 originalReloadBehaviour(file);
               } else {
-                if (isTodoPreloadPath) {
-                  debug('Livereload: Reloading all webviews');
-                  const webview = document.querySelector(
-                    'webview[partition="persist:todos"]',
-                  );
-                  if (webview) webview.reload();
-                } else if (file.path.includes('/build/webview/')) {
+                if (file.path.includes('/build/webview/')) {
                   debug('Livereload: Reloading all webviews');
                   const webviews = document
                     .querySelectorAll('webview')

@@ -140,7 +140,6 @@ class AppLayoutContainer extends Component<IProps> {
         }
         showServiceNameSetting={settings.all.app.showServiceName}
         showMessageBadgesEvenWhenMuted={ui.showMessageBadgesEvenWhenMuted}
-        isTodosServiceActive={services.isTodosServiceActive || false}
       />
     );
 

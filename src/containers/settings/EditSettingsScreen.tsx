@@ -20,7 +20,6 @@ import {
   SIDEBAR_SERVICES_LOCATION,
   SPLIT_COLUMNS_MAX,
   SPLIT_COLUMNS_MIN,
-  TODO_APPS,
   TRANSLATOR_ENGINE_GOOGLE,
   TRANSLATOR_ENGINE_NAMES,
   WAKE_UP_HIBERNATION_STRATEGIES,
@@ -156,14 +155,6 @@ const messages = defineMessages({
   wakeUpHibernationSplay: {
     id: 'settings.app.form.wakeUpHibernationSplay',
     defaultMessage: 'Splay hibernate/wake cycles to reduce load',
-  },
-  predefinedTodoServer: {
-    id: 'settings.app.form.predefinedTodoServer',
-    defaultMessage: 'Todo Server',
-  },
-  customTodoServer: {
-    id: 'settings.app.form.customTodoServer',
-    defaultMessage: 'Custom Todo Server',
   },
   enableLock: {
     id: 'settings.app.form.enableLock',
@@ -333,10 +324,6 @@ const messages = defineMessages({
     id: 'settings.app.form.automaticUpdates',
     defaultMessage: 'Enable updates',
   },
-  enableTodos: {
-    id: 'settings.app.form.enableTodos',
-    defaultMessage: 'Enable Ferdium Todos',
-  },
   keepAllWorkspacesLoaded: {
     id: 'settings.app.form.keepAllWorkspacesLoaded',
     defaultMessage: 'Keep all workspaces loaded',
@@ -395,12 +382,11 @@ class EditSettingsScreen extends Component<
 
   onSubmit(settingsData) {
     const { intl } = this.props;
-    const { todos, workspaces } = this.props.stores;
+    const { workspaces } = this.props.stores;
     const {
       app,
       settings,
       user,
-      todos: todosActions,
       workspaces: workspaceActions,
     } = this.props.actions;
 
@@ -446,8 +432,6 @@ class EditSettingsScreen extends Component<
       wakeUpStrategy: Number(settingsData.wakeUpStrategy),
       wakeUpHibernationStrategy: Number(settingsData.wakeUpHibernationStrategy),
       wakeUpHibernationSplay: Boolean(settingsData.wakeUpHibernationSplay),
-      predefinedTodoServer: settingsData.predefinedTodoServer,
-      customTodoServer: settingsData.customTodoServer,
       isLockingFeatureEnabled: Boolean(settingsData.isLockingFeatureEnabled),
       lockedPassword: useOriginalPassword
         ? this.props.stores.settings.all.app.lockedPassword
@@ -570,15 +554,6 @@ class EditSettingsScreen extends Component<
     ) {
       workspaceActions.toggleKeepAllWorkspacesLoadedSetting();
     }
-
-    if (todos.isFeatureActive) {
-      const { isFeatureEnabledByUser } = todos.settings;
-      if (
-        Boolean(isFeatureEnabledByUser) !== Boolean(settingsData.enableTodos)
-      ) {
-        todosActions.toggleTodosFeatureVisibility();
-      }
-    }
   }
 
   openProcessManager() {
@@ -586,7 +561,7 @@ class EditSettingsScreen extends Component<
   }
 
   prepareForm() {
-    const { app, settings, user, todos, workspaces } = this.props.stores;
+    const { app, settings, user, workspaces } = this.props.stores;
     const { intl } = this.props;
     const { lockedPassword } = this.state;
 
@@ -631,11 +606,6 @@ class EditSettingsScreen extends Component<
 
     const wakeUpHibernationStrategies = getSelectOptions({
       locales: WAKE_UP_HIBERNATION_STRATEGIES,
-      sort: false,
-    });
-
-    const todoApp = getSelectOptions({
-      locales: TODO_APPS,
       sort: false,
     });
 
@@ -886,23 +856,6 @@ class EditSettingsScreen extends Component<
           ),
           default: DEFAULT_APP_SETTINGS.wakeUpHibernationSplay,
           type: 'checkbox',
-        },
-        predefinedTodoServer: {
-          label: intl.formatMessage(messages.predefinedTodoServer),
-          value: ifUndefined<string>(
-            settings.all.app.predefinedTodoServer,
-            DEFAULT_APP_SETTINGS.predefinedTodoServer,
-          ),
-          default: DEFAULT_APP_SETTINGS.predefinedTodoServer,
-          options: todoApp,
-        },
-        customTodoServer: {
-          label: intl.formatMessage(messages.customTodoServer),
-          value: ifUndefined<string>(
-            settings.all.app.customTodoServer,
-            DEFAULT_APP_SETTINGS.customTodoServer,
-          ),
-          default: DEFAULT_APP_SETTINGS.customTodoServer,
         },
         isLockingFeatureEnabled: {
           label: intl.formatMessage(messages.enableLock),
@@ -1353,18 +1306,6 @@ class EditSettingsScreen extends Component<
       };
     }
 
-    if (todos.isFeatureActive) {
-      config.fields.enableTodos = {
-        label: intl.formatMessage(messages.enableTodos),
-        value: ifUndefined<boolean>(
-          todos.settings.isFeatureEnabledByUser,
-          DEFAULT_APP_SETTINGS.isTodosFeatureEnabled,
-        ),
-        default: DEFAULT_APP_SETTINGS.isTodosFeatureEnabled,
-        type: 'checkbox',
-      };
-    }
-
     return new Form(config);
   }
 
@@ -1415,7 +1356,6 @@ class EditSettingsScreen extends Component<
           twoFactorAutoCatcherMatcher={
             this.props.stores.settings.app.twoFactorAutoCatcherMatcher
           }
-          isTodosActivated={this.props.stores.todos.isFeatureEnabledByUser}
           openProcessManager={() => this.openProcessManager()}
           isOnline={app.isOnline}
           serverURL={importExportURL()}

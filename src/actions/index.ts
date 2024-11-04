@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 
-import { todoActions } from '../features/todos/actions';
 import workspaces from '../features/workspaces/actions';
 import app from './app';
 import defineActions from './lib/actions';
@@ -23,8 +22,6 @@ const actions = {
   requests,
 };
 
-export default Object.assign(
-  defineActions(actions, PropTypes.checkPropTypes),
-  { workspaces },
-  { todos: todoActions },
-);
+export default Object.assign(defineActions(actions, PropTypes.checkPropTypes), {
+  workspaces,
+});

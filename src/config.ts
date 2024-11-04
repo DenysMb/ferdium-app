@@ -29,9 +29,6 @@ export const LIVE_API_FERDIUM_WEBSITE = 'https://ferdium.org';
 export const LIVE_API_FERDIUM_LIBRETRANSLATE =
   'https://translator.ferdium.org/translate';
 
-export const LOCAL_TODOS_FRONTEND_URL = 'http://localhost:4000';
-export const PRODUCTION_TODOS_FRONTEND_URL = 'https://app.franztodos.com';
-
 export const CDN_URL = 'https://cdn.franzinfra.com';
 
 export const KEEP_WS_LOADED_USID = '0a0aa000-0a0a-49a0-a000-a0a0a0a0a0a0';
@@ -245,44 +242,6 @@ export const SEARCH_ENGINE_URLS = {
     `https://duckduckgo.com/?q=${searchTerm}`,
 };
 
-export const CUSTOM_TODO_SERVICE = 'isUsingCustomTodoService';
-
-const TODO_TODOIST_URL = 'https://todoist.com/app';
-const TODO_FRANZ_TODOS_URL = 'https://app.franztodos.com';
-const TODO_TICKTICK_URL = 'https://ticktick.com/signin';
-const TODO_MSTODO_URL = 'https://todo.microsoft.com/?app#';
-const TODO_HABITICA_URL = 'https://habitica.com/login';
-const TODO_NOZBE_URL = 'https://app.nozbe.com/#login';
-const TODO_RTM_URL = 'https://www.rememberthemilk.com/';
-const TODO_ANYDO_URL = 'https://desktop.any.do/';
-const TODO_GOOGLETASKS_URL =
-  'https://tasks.google.com/embed/?origin=https%3A%2F%2Fcalendar.google.com&fullWidth=1';
-const TODO_GOOGLEKEEP_URL = 'https://keep.google.com/';
-
-export const TODO_SERVICE_RECIPE_IDS = {
-  [TODO_TODOIST_URL]: 'todoist',
-  [TODO_FRANZ_TODOS_URL]: 'franz-todos',
-  [TODO_TICKTICK_URL]: 'TickTick',
-  [TODO_MSTODO_URL]: 'mstodo',
-  [TODO_HABITICA_URL]: 'habitica',
-  [TODO_ANYDO_URL]: 'anydo',
-  [TODO_GOOGLEKEEP_URL]: 'googlekeep',
-};
-
-export const TODO_APPS = {
-  [TODO_TODOIST_URL]: 'Todoist',
-  [TODO_FRANZ_TODOS_URL]: 'Franz Todo',
-  [TODO_TICKTICK_URL]: 'TickTick',
-  [TODO_MSTODO_URL]: 'Microsoft To Do',
-  [TODO_HABITICA_URL]: 'Habitica',
-  [TODO_NOZBE_URL]: 'Nozbe',
-  [TODO_RTM_URL]: 'Remember The Milk',
-  [TODO_ANYDO_URL]: 'Any.do',
-  [TODO_GOOGLETASKS_URL]: 'Google Tasks',
-  [TODO_GOOGLEKEEP_URL]: 'Google Keep',
-  [CUSTOM_TODO_SERVICE]: 'Other service',
-};
-
 export const SIDEBAR_SERVICES_LOCATION_TOPLEFT = 0;
 export const SIDEBAR_SERVICES_LOCATION_CENTER = 1;
 export const SIDEBAR_SERVICES_LOCATION_BOTTOMRIGHT = 2;
@@ -318,11 +277,7 @@ export const SERVER_NOT_LOADED = 'Ferdium::SERVER_NOT_LOADED';
 
 export const ALLOWED_PROTOCOLS = ['https:', 'http:', 'ftp:', 'ferdium:'];
 
-export const DEFAULT_TODOS_WIDTH = 300;
-export const TODOS_MIN_WIDTH = 200;
-export const DEFAULT_TODOS_VISIBLE = false;
 export const DEFAULT_IS_TODO_FEATURE_ENABLED_BY_USER = false;
-export const TODOS_PARTITION_ID = 'persist:todos';
 
 export const CUSTOM_WEBSITE_RECIPE_ID = 'franz-custom-website';
 
@@ -369,7 +324,6 @@ export const DEFAULT_APP_SETTINGS = {
 
   // Ferdium specific options
   server: LIVE_FERDIUM_API,
-  predefinedTodoServer: TODO_TODOIST_URL,
   autohideMenuBar: false,
   isLockingFeatureEnabled: false,
   locked: false,
@@ -416,8 +370,6 @@ export const DEFAULT_APP_SETTINGS = {
   hideAllServicesWorkspace: false,
   liftSingleInstanceLock: false,
   enableLongPressServiceHint: false,
-  isTodosFeatureEnabled: true,
-  customTodoServer: '',
   locale: 'en-US',
   keepAllWorkspacesLoaded: false,
   useSelfSignedCertificates: false,

@@ -11,7 +11,6 @@ class StaticController {
       isAnnouncementsEnabled: true,
       isSettingsWSEnabled: false,
       isMagicBarEnabled: true,
-      isTodosEnabled: true,
     });
   }
 

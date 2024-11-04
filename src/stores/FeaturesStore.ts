@@ -14,7 +14,6 @@ import communityRecipes from '../features/communityRecipes';
 import publishDebugInfo from '../features/publishDebugInfo';
 import quickSwitch from '../features/quickSwitch';
 import serviceProxy from '../features/serviceProxy';
-import todos from '../features/todos';
 import workspaces from '../features/workspaces';
 import CachedRequest from './lib/CachedRequest';
 import TypedStore from './lib/TypedStore';
@@ -86,7 +85,6 @@ export default class FeaturesStore extends TypedStore {
     quickSwitch();
     publishDebugInfo();
     communityRecipes(this.stores, this.actions);
-    todos(this.stores, this.actions);
     appearance(this.stores);
   }
 }
