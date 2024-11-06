@@ -42,6 +42,7 @@ const styles = theme => ({
     borderRadius: 4,
     overflow: 'hidden',
     padding: '4px 8px',
+    minWidth: 300,
   },
   isActiveItem: {
     backgroundColor: theme.workspaces.drawer.listItem.activeBackground,
@@ -63,7 +64,7 @@ const styles = theme => ({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     width: '100%',
-    textAligen: 'center',
+    textAlign: 'center',
   },
   activeServices: {
     color: theme.workspaces.drawer.listItem.services.active,
