@@ -37,7 +37,6 @@ import globalMessages from '../../../i18n/globalMessages';
 import type Form from '../../../lib/Form';
 import Infobox from '../../ui/Infobox';
 import Select from '../../ui/Select';
-import Slider from '../../ui/Slider';
 import Button from '../../ui/button';
 import ColorPickerInput from '../../ui/colorPickerInput';
 import { H1, H2, H3, H5 } from '../../ui/headline';
@@ -333,7 +332,6 @@ interface IProps extends WrappedComponentProps {
   twoFactorAutoCatcherMatcher: string;
   isDarkmodeEnabled: boolean;
   isAdaptableDarkModeEnabled: boolean;
-  isUseGrayscaleServicesEnabled: boolean;
   isLockingFeatureEnabled: boolean;
   isSplitModeEnabled: boolean;
   isOnline: boolean;
@@ -414,7 +412,6 @@ class EditSettingsForm extends Component<IProps, IState> {
       updateVersion,
       isCheckingForUpdates,
       isAdaptableDarkModeEnabled,
-      isUseGrayscaleServicesEnabled,
       isUpdateAvailable,
       noUpdateAvailable,
       updateIsReadyToInstall,
@@ -675,20 +672,6 @@ class EditSettingsForm extends Component<IProps, IState> {
 
                 <Toggle {...form.$('showDisabledServices').bind()} />
                 <Toggle {...form.$('showServiceName').bind()} />
-
-                {isUseGrayscaleServicesEnabled && <Hr />}
-
-                <Toggle {...form.$('useGrayscaleServices').bind()} />
-
-                {isUseGrayscaleServicesEnabled && (
-                  <>
-                    <Slider
-                      onSliderChange={e => this.submit(e)}
-                      field={form.$('grayscaleServicesDim')}
-                    />
-                    <Hr />
-                  </>
-                )}
 
                 <Toggle {...form.$('showMessageBadgeWhenMuted').bind()} />
                 <Toggle {...form.$('enableLongPressServiceHint').bind()} />

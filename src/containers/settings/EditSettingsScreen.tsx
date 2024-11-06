@@ -236,14 +236,6 @@ const messages = defineMessages({
     id: 'settings.app.form.hideSplitModeButton',
     defaultMessage: 'Hide Split Mode button',
   },
-  useGrayscaleServices: {
-    id: 'settings.app.form.useGrayscaleServices',
-    defaultMessage: 'Use grayscale services',
-  },
-  grayscaleServicesDim: {
-    id: 'settings.app.form.grayscaleServicesDim',
-    defaultMessage: 'Grayscale dim level',
-  },
   hideWorkspacesButton: {
     id: 'settings.app.form.hideWorkspacesButton',
     defaultMessage: 'Hide Workspace Drawer button',
@@ -460,8 +452,6 @@ class EditSettingsScreen extends Component<
       hideCollapseButton: Boolean(settingsData.hideCollapseButton),
       hideRecipesButton: Boolean(settingsData.hideRecipesButton),
       hideSplitModeButton: Boolean(settingsData.hideSplitModeButton),
-      useGrayscaleServices: Boolean(settingsData.useGrayscaleServices),
-      grayscaleServicesDim: Number(settingsData.grayscaleServicesDim),
       hideWorkspacesButton: Boolean(settingsData.hideWorkspacesButton),
       hideNotificationsButton: Boolean(settingsData.hideNotificationsButton),
       hideSettingsButton: Boolean(settingsData.hideSettingsButton),
@@ -1118,23 +1108,6 @@ class EditSettingsScreen extends Component<
           default: DEFAULT_APP_SETTINGS.hideSplitModeButton,
           type: 'checkbox',
         },
-        useGrayscaleServices: {
-          label: intl.formatMessage(messages.useGrayscaleServices),
-          value: ifUndefined<boolean>(
-            settings.all.app.useGrayscaleServices,
-            DEFAULT_APP_SETTINGS.useGrayscaleServices,
-          ),
-          default: DEFAULT_APP_SETTINGS.useGrayscaleServices,
-          type: 'checkbox',
-        },
-        grayscaleServicesDim: {
-          label: intl.formatMessage(messages.grayscaleServicesDim),
-          value: ifUndefined<number>(
-            settings.all.app.grayscaleServicesDim,
-            DEFAULT_APP_SETTINGS.grayscaleServicesDim,
-          ),
-          default: DEFAULT_APP_SETTINGS.grayscaleServicesDim,
-        },
         hideWorkspacesButton: {
           label: intl.formatMessage(messages.hideWorkspacesButton),
           value: ifUndefined<boolean>(
@@ -1345,9 +1318,6 @@ class EditSettingsScreen extends Component<
           isDarkmodeEnabled={this.props.stores.settings.app.darkMode}
           isAdaptableDarkModeEnabled={
             this.props.stores.settings.app.adaptableDarkMode
-          }
-          isUseGrayscaleServicesEnabled={
-            this.props.stores.settings.app.useGrayscaleServices
           }
           isSplitModeEnabled={this.props.stores.settings.app.splitMode}
           isTwoFactorAutoCatcherEnabled={

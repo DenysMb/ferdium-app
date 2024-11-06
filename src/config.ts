@@ -359,8 +359,6 @@ export const DEFAULT_APP_SETTINGS = {
   isMenuCollapsed: false,
   hideRecipesButton: false,
   hideSplitModeButton: true,
-  useGrayscaleServices: false,
-  grayscaleServicesDim: 50,
   hideWorkspacesButton: false,
   hideNotificationsButton: false,
   hideSettingsButton: false,

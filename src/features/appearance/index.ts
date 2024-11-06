@@ -148,8 +148,6 @@ const generateServiceRibbonWidthStyle = (
   horizontal,
   isLabelEnabled,
   sidebarServicesLocation,
-  useGrayscaleServices,
-  grayscaleServicesDim,
   shouldShowDragArea,
   isFullScreen,
   webviewPadding,
@@ -234,9 +232,6 @@ const generateServiceRibbonWidthStyle = (
     }
   }
 
-  const graysacleServices = `filter: grayscale(1);
-  opacity: ${grayscaleServicesDim}%;`;
-
   const sizeDragArea = shouldShowDragArea ? verticalStyleOffset : 0;
   return horizontal
     ? `
@@ -255,7 +250,6 @@ const generateServiceRibbonWidthStyle = (
     }
     .tab-item .tab-item__icon {
       width: ${minimumAdjustedIconSize}px !important;
-      ${useGrayscaleServices ? graysacleServices : null},
     }
     .tab-item .tab-item__label {
       font-size: ${fontSize}px !important;
@@ -329,7 +323,6 @@ const generateServiceRibbonWidthStyle = (
     }
     .tab-item .tab-item__icon {
       width: ${minimumAdjustedIconSize}px !important;
-      ${useGrayscaleServices ? graysacleServices : null},
     }
     .sidebar__button {
       font-size: ${width / 3}px !important;
@@ -443,8 +436,6 @@ const generateStyle = (settings, app) => {
     accentColor,
     serviceRibbonWidth,
     sidebarServicesLocation,
-    useGrayscaleServices,
-    grayscaleServicesDim,
     iconSize,
     showDragArea,
     useHorizontalStyle,
@@ -470,8 +461,6 @@ const generateStyle = (settings, app) => {
     useHorizontalStyle,
     showServiceName,
     sidebarServicesLocation,
-    useGrayscaleServices,
-    grayscaleServicesDim,
     shouldShowDragArea,
     isFullScreen,
     webviewPadding,
@@ -531,8 +520,6 @@ export default function initAppearance(stores) {
       settings.all.app.iconSize,
       settings.all.app.showDragArea,
       settings.all.app.sidebarServicesLocation,
-      settings.all.app.useGrayscaleServices,
-      settings.all.app.grayscaleServicesDim,
       settings.all.app.useHorizontalStyle,
       settings.all.app.alwaysShowWorkspaces,
       settings.all.app.showWorkspacesAtBottom,
