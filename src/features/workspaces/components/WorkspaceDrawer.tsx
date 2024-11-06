@@ -81,6 +81,9 @@ const styles = theme => ({
     display: 'flex',
     padding: 6,
     gap: 6,
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
   },
   addNewWorkspaceLabel: {
     height: 'auto',
@@ -139,7 +142,16 @@ class WorkspaceDrawer extends Component<IProps> {
 
     return (
       <div className={`${classes.drawer} workspaces-drawer`}>
-        <div className={classes.workspaces}>
+        <div
+          className={classes.workspaces}
+          onWheel={event => {
+            const target = event.currentTarget;
+
+            target.scrollBy({
+              left: event.deltaY,
+            });
+          }}
+        >
           {!hideAllServicesWorkspace && (
             <WorkspaceDrawerItem
               name={intl.formatMessage(messages.allServices)}
@@ -172,24 +184,6 @@ class WorkspaceDrawer extends Component<IProps> {
             />
           ))}
         </div>
-
-        {/* <span
-          className={classes.workspacesSettingsButton}
-          onKeyDown={noop}
-          onClick={() => {
-            workspaceActions.openWorkspaceSettings();
-          }}
-          data-tooltip-id="tooltip-workspaces-drawer"
-          data-tooltip-content={intl.formatMessage(
-            messages.workspacesSettingsTooltip,
-          )}
-        >
-          <Icon
-            icon={mdiCog}
-            size={1.5}
-            className={classes.workspacesSettingsButtonIcon}
-          />
-        </span> */}
 
         <ReactTooltip
           id="tooltip-workspaces-drawer"
