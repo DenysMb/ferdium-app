@@ -104,10 +104,6 @@ const generateAccentStyle = accentColorStr => {
       border-right-color: ${accentColorStr};
     }
 
-    .franz-form .franz-form__radio.is-selected, .tab-item.is-active {
-      border-color: ${accentColorStr};
-    }
-
     a.button:hover, button.button:hover {
       background: ${darkenAbsolute(accentColor, 10).hex()};
     }
