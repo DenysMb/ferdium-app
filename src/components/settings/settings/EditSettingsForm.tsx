@@ -1239,6 +1239,8 @@ class EditSettingsForm extends Component<IProps, IState> {
                     onChange={e => this.submit(e)}
                     {...form.$('shortcutActivatePreviousService').bind()}
                   />
+
+                  <Toggle {...form.$('activateServiceUsesAlt').bind()} />
                 </div>
               </div>
             )}

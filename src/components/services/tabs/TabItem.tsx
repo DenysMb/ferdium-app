@@ -366,7 +366,10 @@ class TabItem extends Component<IProps, IState> {
         data-tooltip-id="tooltip-sidebar-button"
         data-tooltip-content={`${service.name} ${acceleratorString({
           index: shortcutIndex,
-          keyCombo: cmdOrCtrlShortcutKey(false),
+          keyCombo: this.props.stores!.settings.all.shortcuts
+            .activateServiceUsesAlt
+            ? altKey()
+            : cmdOrCtrlShortcutKey(false),
         })}`}
       >
         <img src={service.icon} className="tab-item__icon" alt="" />

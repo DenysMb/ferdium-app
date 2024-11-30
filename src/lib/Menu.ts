@@ -304,6 +304,10 @@ export const menuItems = defineMessages({
     id: 'menu.services.activatePreviousService',
     defaultMessage: 'Activate previous service',
   },
+  activateServiceUsesAlt: {
+    id: 'menu.services.activateServiceUsesAlt',
+    defaultMessage: 'Use Alt key to activate service',
+  },
   muteApp: {
     id: 'sidebar.muteApp',
     defaultMessage: 'Disable notifications & audio',
@@ -1145,7 +1149,9 @@ class FranzMenu implements StoresProps {
         label: this._getServiceName(service),
         accelerator: acceleratorString({
           index: i + 1,
-          keyCombo: cmdOrCtrlShortcutKey(),
+          keyCombo: this.stores.settings.shortcuts.activateServiceUsesAlt
+            ? altKey()
+            : cmdOrCtrlShortcutKey(),
           prefix: '',
           suffix: '',
         }),

@@ -113,6 +113,7 @@
   "menu.help.tos": "Terms of Service",
   "menu.services": "Services",
   "menu.services.activatePreviousService": "Activate previous service",
+  "menu.services.activateServiceUsesAlt": "Use Alt key to activate service",
   "menu.services.addNewService": "Add New Service...",
   "menu.services.copyToClipboard": "Copy to clipboard",
   "menu.services.goHome": "Home",
