@@ -2,7 +2,7 @@ name: Sync develop branch with upstream
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '0 */6 * * *'
   workflow_dispatch:
 
 jobs:
@@ -19,6 +19,17 @@ jobs:
         run: |
           git remote add upstream https://github.com/ferdium/ferdium-app.git
           git fetch upstream
+          
+      - name: Check if updates exist
+        id: check_updates
+        run: |
+          git fetch upstream develop
+          git log HEAD..upstream/develop --oneline
+        continue-on-error: true
+
+      - name: Merge and push changes
+        if: steps.check_updates.outputs.stdout != '' # Só executa se houver mudanças
+        run: |
           git checkout develop
           git merge upstream/develop --ff-only
           git push origin develop
