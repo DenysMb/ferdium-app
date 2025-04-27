@@ -19,7 +19,7 @@ import { updateVersionParse } from '../../helpers/update-helpers';
 import InfoBar from '../ui/InfoBar';
 import ErrorBoundary from '../util/ErrorBoundary';
 
-import { isMac, isWindows } from '../../environment';
+import { isMac, isSnap, isWindows } from '../../environment';
 import Todos from '../../features/todos/containers/TodosScreen';
 import WorkspaceSwitchingIndicator from '../../features/workspaces/components/WorkspaceSwitchingIndicator';
 import AppUpdateInfoBar from '../AppUpdateInfoBar';
@@ -196,7 +196,7 @@ class AppLayout extends Component<PropsWithChildren<IProps>, IState> {
                     </InfoBar>
                   )}
                 {automaticUpdates &&
-                  appUpdateIsDownloaded &&
+                  (appUpdateIsDownloaded || isSnap) &&
                   this.state.shouldShowAppUpdateInfoBar && (
                     <AppUpdateInfoBar
                       onInstallUpdate={installAppUpdate}
