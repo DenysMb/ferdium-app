@@ -279,6 +279,10 @@ const messages = defineMessages({
     id: 'settings.app.form.alwaysShowWorkspaces',
     defaultMessage: 'Always show workspace drawer',
   },
+  useCompactWorkspaceDrawer: {
+    id: 'settings.app.form.useCompactWorkspaceDrawer',
+    defaultMessage: 'Use compact workspace drawer',
+  },
   hideAllServicesWorkspace: {
     id: 'settings.app.form.hideAllServicesWorkspace',
     defaultMessage: 'Hide "All services" workspace',
@@ -486,6 +490,9 @@ class EditSettingsScreen extends Component<
       hideSettingsButton: Boolean(settingsData.hideSettingsButton),
       hideDownloadButton: Boolean(settingsData.hideDownloadButton),
       alwaysShowWorkspaces: Boolean(settingsData.alwaysShowWorkspaces),
+      useCompactWorkspaceDrawer: Boolean(
+        settingsData.useCompactWorkspaceDrawer,
+      ),
       hideAllServicesWorkspace: Boolean(settingsData.hideAllServicesWorkspace),
       accentColor: settingsData.accentColor,
       progressbarAccentColor: settingsData.progressbarAccentColor,
@@ -1247,6 +1254,15 @@ class EditSettingsScreen extends Component<
             DEFAULT_APP_SETTINGS.alwaysShowWorkspaces,
           ),
           default: DEFAULT_APP_SETTINGS.alwaysShowWorkspaces,
+          type: 'checkbox',
+        },
+        useCompactWorkspaceDrawer: {
+          label: intl.formatMessage(messages.useCompactWorkspaceDrawer),
+          value: ifUndefined<boolean>(
+            settings.all.app.useCompactWorkspaceDrawer,
+            DEFAULT_APP_SETTINGS.useCompactWorkspaceDrawer,
+          ),
+          default: DEFAULT_APP_SETTINGS.useCompactWorkspaceDrawer,
           type: 'checkbox',
         },
         hideAllServicesWorkspace: {
