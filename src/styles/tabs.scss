@@ -5,6 +5,7 @@
 
   &.is-active {
     background: $dark-theme-gray;
+    border: 1px solid $dark-theme-gray-light;
   }
 
   &.is-disabled .tab-item__icon {
@@ -16,7 +17,7 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 1;
-  padding: 6px;
+  padding: 6px 0 6px 6px;
   gap: 6px;
 
   .placeholder {
@@ -42,6 +43,7 @@
   }
 
   &.is-active {
+    border: 1px solid rgba(0, 0, 0, 0.05);
     background: change-color(
       $theme-brand-primary,
       $lightness: min(lightness($theme-brand-primary) * 1.35, 100)

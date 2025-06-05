@@ -46,6 +46,7 @@ const styles = theme => ({
   },
   isActiveItem: {
     backgroundColor: theme.workspaces.drawer.listItem.activeBackground,
+    boxShadow: `0 0 0 1px ${theme.workspaces.drawer.listItem.border}`,
     '&:hover': {
       backgroundColor: theme.workspaces.drawer.listItem.activeBackground,
     },

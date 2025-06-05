@@ -19,7 +19,7 @@ const STYLE_ELEMENT_ID = 'custom-appearance-style';
 // the value of the left and right side when using on width
 // and the value of the top and bottom side when using on height
 // So we get a total of 12px
-const PADDING = 6 * 2;
+const PADDING = 6;
 
 const WORKSPACES_DRAWER_HEIGHT = 48;
 
@@ -148,7 +148,6 @@ const generateServiceRibbonWidthStyle = (
   grayscaleServicesDim,
   shouldShowDragArea,
   isFullScreen,
-  webviewPadding,
   showWorkspacesAtBottom,
 ) => {
   const width = Number(widthStr);
@@ -267,16 +266,11 @@ const generateServiceRibbonWidthStyle = (
       flex-direction: ${showWorkspacesAtBottom ? 'column-reverse' : 'column'};
     }
     .workspaces-drawer {
-      border-top-width: ${showWorkspacesAtBottom ? '0px' : '1px'};
       transform: ${
         showWorkspacesAtBottom
           ? `translateY(${WORKSPACES_DRAWER_HEIGHT}px)`
           : `translateY(-${WORKSPACES_DRAWER_HEIGHT}px)`
       } !important;
-    }
-    .workspaces-drawer::after {
-      top: ${showWorkspacesAtBottom ? '0px' : '-10px'};
-      bottom: ${showWorkspacesAtBottom ? '-10px' : '0px'};
     }
     .darwin .sidebar {
       height: ${
@@ -305,10 +299,10 @@ const generateServiceRibbonWidthStyle = (
       overflow: hidden !important;
     }
     .services__webview-wrapper {
-      padding: ${webviewPadding ? '6px' : '0px'};
+      margin: 6px;
     }
     .services__webview-wrapper webview {
-      border-radius: ${webviewPadding ? '4px' : '0px'};
+      border-radius: 4px;
     }
   `
     : `
@@ -334,25 +328,20 @@ const generateServiceRibbonWidthStyle = (
       flex-direction: ${showWorkspacesAtBottom ? 'column-reverse' : 'column'};
     }
     .workspaces-drawer {
-      border-top-width: ${showWorkspacesAtBottom ? '0px' : '1px'};
       transform: ${
         showWorkspacesAtBottom
           ? `translateY(${WORKSPACES_DRAWER_HEIGHT}px)`
           : `translateY(-${WORKSPACES_DRAWER_HEIGHT}px)`
       } !important;
     }
-    .workspaces-drawer::after {
-      top: ${showWorkspacesAtBottom ? '0px' : '-10px'};
-      bottom: ${showWorkspacesAtBottom ? '-10px' : '0px'};
-    }
     .todos__todos-panel--expanded {
       width: calc(100% - ${300 + width}px) !important;
     }
     .services__webview-wrapper {
-      padding: ${webviewPadding ? '6px' : '0px'};
+      margin: 6px;
     }
     .services__webview-wrapper webview {
-      border-radius: ${webviewPadding ? '4px' : '0px'};
+      border-radius: 4px;
     }
   `;
 };
@@ -414,12 +403,6 @@ const generateOpenWorkspaceStyle = (
   .sidebar::after { box-shadow: none !important; }
   `;
 
-  const borderBottom = useHorizontalStyle ? '1px !important' : '0px !important';
-  const borderTop =
-    useHorizontalStyle && !showWorkspacesAtBottom
-      ? '1px !important'
-      : '0px !important';
-
   return `
   .app .app__content {
     width: 100%;
@@ -432,9 +415,7 @@ const generateOpenWorkspaceStyle = (
     position: relative !important;
     transform: translateY(0px) !important;
     box-shadow: none !important;
-    border-top-width: ${borderTop};
-    border-bottom-width: ${borderBottom};
-    }
+  }
     ${useHorizontalStyle && !showWorkspacesAtBottom && sidebarAfter}
   `;
 };
@@ -454,7 +435,6 @@ const generateStyle = (settings, app) => {
     alwaysShowWorkspaces,
     showWorkspacesAtBottom,
     showServiceName,
-    webviewPadding,
   } = settings;
 
   const { isFullScreen } = app;
@@ -477,7 +457,6 @@ const generateStyle = (settings, app) => {
     grayscaleServicesDim,
     shouldShowDragArea,
     isFullScreen,
-    webviewPadding,
     showWorkspacesAtBottom,
   );
 
